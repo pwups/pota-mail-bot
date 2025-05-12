@@ -64,7 +64,7 @@ async def on_message(message):
     await bot.process_commands(message)
 
     if message.guild is None and not message.author.bot:
-        guild = bot.get_guild(GUILD_ID)
+    guild = bot.get_guild(GUILD_ID)
     if not guild:
         print(f"Guild with ID {GUILD_ID} not found.")
         return
@@ -96,11 +96,11 @@ async def on_message(message):
             overwrites=overwrites
         )
         ticket_channels[message.author.id] = channel
-
-            embed = discord.Embed(
-                title="<a:white_envelope:1371482945336119389>　　~~          ~~　　Ticket Created.",
-                description="**<a:01charmzheart:1371440749341839432>  Thank you for contacting modmail **\nPlease state what you __need help with__ <a:010sparkle:1371482938373443695>\n-# _ _ <:red_dot:1371489166638190595>reporting a member        <:red_dot:1371489166638190595>claiming gw\n-# _ _ <:red_dot:1371489166638190595>booster perks                     <:red_dot:1371489166638190595>ask a question\n**Our staff team will get to you shortly <a:redcheck:1371483725946163205> **",
-                color=LIGHT_PINK
+        
+        embed = discord.Embed(
+            title="<a:white_envelope:1371482945336119389>　　~~          ~~　　Ticket Created.",
+            description="**<a:01charmzheart:1371440749341839432>  Thank you for contacting modmail **\nPlease state what you __need help with__ <a:010sparkle:1371482938373443695>\n-# _ _ <:red_dot:1371489166638190595>reporting a member        <:red_dot:1371489166638190595>claiming gw\n-# _ _ <:red_dot:1371489166638190595>booster perks                     <:red_dot:1371489166638190595>ask a question\n**Our staff team will get to you shortly <a:redcheck:1371483725946163205> **",
+            color=LIGHT_PINK
             )
             embed.set_footer(text="your message has been sent", icon_url=guild.icon.url)
             await message.author.send(embed=embed)
@@ -156,4 +156,5 @@ async def forward_to_ticket(channel, author, content, avatar_url, attachments):
     except discord.NotFound:
         print(f"Channel {channel.id} not found when trying to forward a message.")
 
+keep_alive()
 bot.run(TOKEN)

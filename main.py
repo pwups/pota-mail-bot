@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from flask import flask
+from keep_alive import keep_alive
 from discord import app_commands, ui
 import os
 import io
@@ -56,8 +56,8 @@ async def on_ready():
         print(f"Sync error: {e}")
 
     # Set custom status
-    activity = discord.Activity(type=discord.ActivityType.watching, name="/pota's dms ☆")
-    await bot.change_presence(status=discord.Status.online, activity=activity)
+    activity = discord.Activity(type=discord.ActivityType.listening, name="kung siya man ✦")
+    await bot.change_presence(status=discord.Status.dnd, activity=activity)
 
 @bot.event
 async def on_message(message):
@@ -106,7 +106,7 @@ async def on_message(message):
             await message.author.send(embed=embed)
 
             await channel.send(embed=discord.Embed(
-                description=f"New ticket created by {message.author.mention}",
+                description=f"new ticket by {message.author.mention} mga people!",
                 color=LIGHT_YELLOW
             ), view=CloseButton(channel, message.author))
 
@@ -129,7 +129,7 @@ async def on_message(message):
                         timestamp=discord.utils.utcnow()
                     )
                     embed.set_author(name=message.author.name, icon_url=message.author.display_avatar.url)
-                    embed.set_footer(text="ʚ doki hub staff", icon_url=message.guild.icon.url)
+                    embed.set_footer(text=": pota staff", icon_url=message.guild.icon.url)
 
                     files = []
                     for attachment in message.attachments:

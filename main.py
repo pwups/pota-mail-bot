@@ -161,7 +161,7 @@ async def contact(ctx, user_id: int, *, message):
         
         # Step 1: Introductory DM
         intro = discord.Embed(
-            title="<a:03_white_mail:1365616375472717934>　~~　          　~~　Ticket Created.",
+            title="<a:white_envelope:1371482945336119389>　~~　          　~~　Ticket Created.",
             description="You’ve received a message from the staff team. You can reply to this DM to open a modmail ticket. <:003_:1371441150703042653>",
             color=LIGHT_PINK
         )

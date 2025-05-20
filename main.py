@@ -14,7 +14,7 @@ intents.dm_messages = True
 intents.message_content = True
 intents.members = True
 
-bot = commands.Bot(command_prefix='!', intents=intents)
+bot = commands.Bot(command_prefix='p?', intents=intents)
 ticket_channels = {}
 
 GUILD_ID = 1319396490543890482  # Replace with your guild ID

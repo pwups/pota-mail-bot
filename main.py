@@ -153,5 +153,35 @@ async def forward_to_ticket(channel, author, content, avatar_url, attachments):
     except discord.NotFound:
         print(f"Channel {channel.id} not found when trying to forward a message.")
 
+@bot.command()
+@commands.has_permissions(manage_messages=True)
+async def contact(ctx, user_id: int, *, message):
+    try:
+        user = await bot.fetch_user(user_id)
+        
+        # Step 1: Introductory DM
+        intro = discord.Embed(
+            title="<a:03_white_mail:1365616375472717934>　~~　          　~~　Ticket Created.",
+            description="You’ve received a message from the staff team. You can reply to this DM to open a modmail ticket. <:003_:1371441150703042653>",
+            color=LIGHT_PINK
+        )
+        await user.send(embed=intro)
+        
+        # Step 2: Staff message
+        embed = discord.Embed(
+            title="<:red_dot:1371489169217421392> Message from Staff:",
+            description=message,
+            color=LIGHT_PURPLE
+        )
+        embed.set_footer(text=f"sent by {ctx.author}", icon_url=ctx.author.avatar.url if ctx.author.avatar else None)
+        await user.send(embed=embed)
+
+        await ctx.send(embed=discord.Embed(description=f"msg sent to **{user}**.", color=discord.Color.green()))
+
+    except discord.Forbidden:
+        await ctx.send(embed=discord.Embed(description="I can't DM this user. They may have DMs off.", color=discord.Color.red()))
+    except discord.NotFound:
+        await ctx.send(embed=discord.Embed(description="User not found.", color=discord.Color.red()))
+
 keep_alive()
 bot.run(TOKEN)

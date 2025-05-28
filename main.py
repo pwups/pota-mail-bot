@@ -46,6 +46,8 @@ class CloseButton(ui.View):
         await self.user.send(embed=embed)
         await self.channel.delete()
 
+bot.remove_command('help')
+
 @bot.event
 async def on_ready():
     print(f"Bot ready: {bot.user}")
